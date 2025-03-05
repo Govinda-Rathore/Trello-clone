@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { createBoard } from '@/app/actions/boardAction';
+import { createBoard } from '@/app/actions/boardActions';
 import { redirect } from 'next/navigation';
 
 export default function NewBoardPage() {

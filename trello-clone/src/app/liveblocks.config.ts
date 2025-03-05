@@ -5,7 +5,18 @@ import { createRoomContext } from "@liveblocks/react";
 
 const client = createClient({
   authEndpoint: "/api/liveblocks-auth",
+
   throttle:100,
+
+  resolveUsers: async ({userIds}) => {
+    const response = await fetch(`/api/users?ids=` + userIds.join(','));
+    return await response.json();
+  },
+  resolveMentionSuggestions: async ({text}) => {
+    const response = await fetch(`/api/users?search=`+text);
+    const users = await response.json();
+    return users.map((user:UserMeta) => user.id);
+  },
 });
 
 export type Presence = {
@@ -26,8 +37,8 @@ export type Card={
 }
 
 type Storage = {
-    columns: LiveList<LiveObject<Column>>;
-    cards: LiveList<LiveObject<Card>>;
+    columns: LiveList<LiveObject<Column>> ;
+    cards: LiveList<LiveObject<Card>> ;
 };
 
 type UserMeta = {
@@ -49,13 +60,15 @@ export const {
 
       RoomProvider,
       useMyPresence,
+      useUpdateMyPresence,
       useStorage,
       useMutation,
       useSelf,
       useThreads,
+      useOthers,
       // Other suspense hooks
     // ...
 
-} = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(
-  client
-);
+} = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata >
+(client
+)

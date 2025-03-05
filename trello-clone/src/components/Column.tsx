@@ -1,14 +1,10 @@
-import React, { Dispatch, FC, FormEvent, SetStateAction,useState} from 'react'
+import React, { FormEvent,useState} from 'react'
 import { ReactSortable } from "react-sortablejs";
 import { Card, useMutation, useStorage } from '@/app/liveblocks.config';
 import { shallow } from '@liveblocks/client';
 import NewCardForm from './forms/NewCardForm';
-import { LiveObject } from '@liveblocks/core';
-import { updateBoard } from '@/app/actions/boardAction';
-import { liveblocksClient } from '@/lib/liveblocksClient';
-import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose, faEllipsis, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {default as ColumnCard} from '@/components/Card'
 import CancelButton from './CancelButton';
 
@@ -19,9 +15,7 @@ type ColumnProps={
  
 export default function Column({id,name}:ColumnProps) {
     const[renameMode,setRenameMode]=useState(false);
-    const router=useRouter();
 
-   
     const columnCards=useStorage<Card[]>(root=>{
         return root.cards
                     .filter(card=>card.columnId===id)
@@ -68,7 +62,6 @@ export default function Column({id,name}:ColumnProps) {
             const newName=input.value;
             updateColumn(id,newName)
             setRenameMode(false);
-            router.refresh();
         }
     }
    
@@ -103,7 +96,7 @@ export default function Column({id,name}:ColumnProps) {
             <>
             <ReactSortable 
                 list={columnCards} 
-                setList={items=>setCardsForColumn(items,id)} 
+                setList={(items: Card[])=>setCardsForColumn(items,id)} 
                 group="cards"
                 className='min-h-12'
                 ghostClass='opacity-40'

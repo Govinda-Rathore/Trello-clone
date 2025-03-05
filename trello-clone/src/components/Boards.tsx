@@ -1,7 +1,7 @@
 'use server'
 import getUserEmail from "@/lib/getUserEmail";
 import { liveblocksClient } from "@/lib/liveblocksClient";
-import Link from "next/link";
+import BoardsTiles from "./BoardsTiles";
 
 
 export default async function Boards(){
@@ -9,16 +9,6 @@ export default async function Boards(){
     const {data:rooms}=await liveblocksClient.getRooms({userId:email});
 
     return (
-        <div className="my-4 grid md:grid-cols-4 gap-2">
-            {rooms.length>0 && rooms.map(room=>(
-                <Link
-                 className="bg-gray-200 p-4 rounded-md"
-                 href={`boards/${room.id}`}
-                 key={room.id}>
-                    {room.metadata.boardName}
-                </Link>
-            ))
-            }
-        </div>
+        <BoardsTiles boards={rooms}/>
     )
 }

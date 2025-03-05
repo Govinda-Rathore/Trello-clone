@@ -11,7 +11,6 @@ import { LiveblocksYjsProvider } from "@liveblocks/yjs";
 import { useRoom } from "@liveblocks/react";
 // import { useRoom } from "@/liveblocks.config";/
 import { useEffect, useState } from "react";
-import styles from "@/app/Editor.module.css";
 import { Toolbar } from "./Toolbar";
 import { useSelf } from "@/app/liveblocks.config";
 
@@ -57,12 +56,7 @@ function TiptapEditor({ doc, provider }: EditorProps) {
   if(!userInfo){return;}
 
   const editor = useEditor({
-    editorProps: {
-      attributes: {
-        // Add styles to editor element
-        class: styles.editor,
-      },
-    },
+    
     extensions: [
       StarterKit.configure({
         // The Collaboration extension comes with its own history handling
@@ -70,7 +64,7 @@ function TiptapEditor({ doc, provider }: EditorProps) {
       }),
       Placeholder.configure({
         emptyEditorClass: 'is-editor-empty',
-        placeholder: 'Task description...'
+        placeholder: 'Task description...',
       }),
       // Register the document with Tiptap
       Collaboration.configure({
@@ -87,11 +81,11 @@ function TiptapEditor({ doc, provider }: EditorProps) {
   });
 
   return (
-    <div className={styles.container}>
-      <div className={styles.editorHeader}>
+    <div className="m-2">
+      <div >
         <Toolbar editor={editor} />
       </div>
-      <EditorContent editor={editor} className={styles.editorContainer} />
+      <EditorContent editor={editor} />
     </div>
   );
 }

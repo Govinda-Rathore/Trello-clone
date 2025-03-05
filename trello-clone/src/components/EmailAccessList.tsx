@@ -3,7 +3,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation';
-import { removeEmailFromBoard } from '@/app/actions/boardAction';
+import { removeEmailFromBoard } from '@/app/actions/boardActions';
 
 export default function EmailAccessList({emails,boardId}:{emails:string[],boardId:string}) {
     const router=useRouter();

@@ -1,6 +1,6 @@
 'use client';
 
-import { addEmailToBoard } from "@/app/actions/boardAction";
+import { addEmailToBoard } from "@/app/actions/boardActions";
 import {useRouter } from "next/navigation";
 
 export default function NewBoardAccess({boardId}:{boardId:string}){

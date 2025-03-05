@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation';
-import { deleteBoard } from '@/app/actions/boardAction';
+import { deleteBoard } from '@/app/actions/boardActions';
 
 export default function BoardDeleteButton({boardId}:{boardId:string}) {
     const router=useRouter();

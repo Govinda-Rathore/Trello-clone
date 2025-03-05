@@ -1,6 +1,6 @@
-import { createContext,useState,Dispatch, Provider } from "react"
+import { createContext,useState,Dispatch } from "react"
 
-type OpenCardId=string|null;
+export type OpenCardId=string|null;
 
 export type BoardContextProps={
     openCard?:OpenCardId,
@@ -19,6 +19,8 @@ export function BoardContextProvider({children}:ProviderProps){
     return(
         <BoardContext.Provider value={{
             openCard,setOpenCard,
-        }}>{children}</BoardContext.Provider>
+        }}>
+            {children}
+        </BoardContext.Provider>
     )
 }
