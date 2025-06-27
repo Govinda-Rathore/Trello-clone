@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preinstall": "only-allow yarn"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.7.4",
@@ -51,6 +52,7 @@
     "@types/sortablejs": "^1.15.8",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "only-allow": "^1.2.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

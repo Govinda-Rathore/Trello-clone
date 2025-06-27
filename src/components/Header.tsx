@@ -10,7 +10,7 @@ export default async function Header() {
   return (
         <header className="p-4 bg-gray-200 px-8">
             <div className='flex justify-between items-center'>
-                    <Link href="/" className='logo'>Trello-Clone</Link>
+                    <Link href="/" className='logo font-medium text-2xl italic'>Collab Board</Link>
                 <div className='flex items-center'>
                     {session && (
                         <>
